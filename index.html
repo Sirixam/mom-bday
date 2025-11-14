@@ -53,13 +53,13 @@
       background: #eb684e;
       transform: scale(1.03);
     }
-    #result {
-      margin-top: 20px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #444;
-      opacity: 0;
-      transition: opacity 0.4s;
+    #foodImage {
+      display:none;
+      max-width:300px;
+      margin-top:20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.4s ease;
     }
   </style>
 </head>
@@ -67,48 +67,34 @@
   <h1>What do you want to eat?</h1>
 
   <div class="card">
-    <button class="option-btn" onclick="choose('Thai')">Thai</button>
-    <button class="option-btn" onclick="choose('Mexican')">Mexican</button>
-    <button class="option-btn" onclick="choose('Peruvian')">Peruvian</button>
-    <button class="option-btn" onclick="choose('Japanese')">Japanese</button>
-    <button class="option-btn" onclick="choose('Italian')">Italian</button>
-    <button class="option-btn" onclick="choose('Chilean')">Chilean</button>
-
-    <div id="result"></div>
-    <button class="option-btn" style="background:#2ecc71;margin-top:20px;" onclick="export()">Export to </button>
+    <button class="option-btn" onclick="chooseFood('thai')">Thai</button>
+    <button class="option-btn" onclick="chooseFood('mexican')">Mexican</button>
+    <button class="option-btn" onclick="chooseFood('peruvian')">Peruvian</button>
+    <button class="option-btn" onclick="chooseFood('japanese')">Japanese</button>
+    <button class="option-btn" onclick="chooseFood('italian')">Italian</button>
+    <button class="option-btn" onclick="chooseFood('chilean')">Chilean</button>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/-com@3/dist/email.min.js">  function sendEmail(entry) {
-      const params = {
-        choice: entry.choice,
-        time: entry.time,
-        to_email_1: 'max@gmail.com',
-        to_email_2: 'max@gmail.com'
-      };
+  <img id="foodImage" />
 
-      .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', params)
-        .then(() => alert('Email sent!'))
-        .catch(err => alert('Failed to send email: ' + err));
+  <script>
+    const images = {
+      thai: "images/thai.jpg",
+      mexican: "images/mexican.jpg",
+      peruvian: "images/peruvian.jpg",
+      japanese: "images/japanese.jpg",
+      italian: "images/italian.jpg",
+      chilean: "images/chilean.jpg"
+    };
+
+    function chooseFood(option) {
+      const img = document.getElementById("foodImage");
+      img.src = images[option];
+      img.style.display = "block";
+
+      alert(`You have chosen ${option}. Please send a photo of your choice to max.`);
     }
-</script>
-<script>
-  const images = {
-    thai: "images/thai.jpg",
-    mexican: "images/mexican.jpg",
-    peruvian: "images/peruvian.jpg",
-    japanese: "images/japanese.jpg",
-    italian: "images/italian.jpg",
-    chilean: "images/chilean.jpg"
-  };
+  </script>
 
-  function chooseFood(option) {
-    const img = document.getElementById("foodImage");
-    img.src = images[option];
-    img.style.display = "block";
-
-    alert(`You have chosen ${option}. Please send a photo of your choice to max.`);
-  }
-</script>
-  <img id="foodImage" style="display:none; max-width:300px; margin-top:20px;" />
 </body>
 </html>
