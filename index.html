@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Food Chooser</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600&display=swap');
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #ffecd2, #fcb69f);
@@ -64,7 +65,11 @@
   </style>
 </head>
 <body>
-  <h1>Feliz cumpleaños mamá! Te has ganado una invitación a Santiago a pasear y salir a comer, un fin de semana en la primera quincena de Enero</h1>
+  <h1 style="font-family: 'Pacifico', cursive; font-size: 2.6rem; color:#5a3e36; text-align:center; line-height:1.3;">
+    Feliz cumpleaños mamá!<br>
+    Te has ganado una invitación a Santiago a pasear y salir a comer,<br>
+    un fin de semana en la primera quincena de Enero
+  </h1>
 
   <div class="card">
     <button class="option-btn" onclick="chooseFood('thai')">Thai</button>
@@ -92,7 +97,7 @@
       img.src = images[option];
       img.style.display = "block";
 
-      alert(`You have chosen ${option}. Please send a photo of your choice to max.`);
+      alert(`Elegiste comida "${option}". Por favor cierra este pop up y envía a max una foto de la elección :)`);
     }
   </script>
 
