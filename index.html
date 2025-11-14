@@ -75,20 +75,40 @@
     <button class="option-btn" onclick="choose('Chilean')">Chilean</button>
 
     <div id="result"></div>
+    <button class="option-btn" style="background:#2ecc71;margin-top:20px;" onclick="exportCSV()">Export to CSV</button>
   </div>
 
-  <script>
-    function choose(food) {
-      // Save choice in localStorage
-      let choices = JSON.parse(localStorage.getItem('foodChoices') || '[]');
-      choices.push({ choice: food, time: new Date().toISOString() });
-      localStorage.setItem('foodChoices', JSON.stringify(choices));
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">  function sendEmail(entry) {
+      const params = {
+        choice: entry.choice,
+        time: entry.time,
+        to_email_1: 'max@gmail.com',
+        to_email_2: 'max@gmail.com'
+      };
 
-      const result = document.getElementById('result');
-      result.innerText = `You chose: ${food}!`;
-      result.style.opacity = 1;
-    }!`;
+      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', params)
+        .then(() => alert('Email sent!'))
+        .catch(err => alert('Failed to send email: ' + err));
     }
-  </script>
+</script>
+<script>
+  const images = {
+    thai: "images/thai.jpg",
+    mexican: "images/mexican.jpg",
+    peruvian: "images/peruvian.jpg",
+    japanese: "images/japanese.jpg",
+    italian: "images/italian.jpg",
+    chilean: "images/chilean.jpg"
+  };
+
+  function chooseFood(option) {
+    const img = document.getElementById("foodImage");
+    img.src = images[option];
+    img.style.display = "block";
+
+    alert(`You have chosen ${option}. Please send a photo of your choice to max.`);
+  }
+</script>
+  <img id="foodImage" style="display:none; max-width:300px; margin-top:20px;" />
 </body>
 </html>
